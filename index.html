@@ -1,1 +1,79 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WinGo Tracker</title>
 
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+  <header class="top">
+    <div>
+      <h1>WinGo Result Tracker</h1>
+      <p class="muted">প্রেডিকশন/হ্যাক নয়—শুধু আপনার ইনপুট করা রেজাল্টের স্ট্যাটস ও চার্ট।</p>
+    </div>
+    <div class="actions">
+      <button id="exportBtn">Export JSON</button>
+      <button id="clearBtn" class="danger">Clear All</button>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Add Result</h2>
+      <div class="row">
+        <div class="field">
+          <label>Period</label>
+          <input id="period" placeholder="20260406100051265" />
+        </div>
+        <div class="field small">
+          <label>Number (0-9)</label>
+          <input id="number" type="number" min="0" max="9" placeholder="0-9" />
+        </div>
+        <div class="field small">
+          <label>Time (optional)</label>
+          <input id="time" type="datetime-local" />
+        </div>
+        <div class="field small">
+          <button id="addBtn" class="primary" style="width:100%">Add</button>
+        </div>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><div class="t">Total</div><div class="v" id="kTotal">0</div></div>
+        <div class="kpi"><div class="t">Big (5-9)</div><div class="v" id="kBig">0</div></div>
+        <div class="kpi"><div class="t">Small (0-4)</div><div class="v" id="kSmall">0</div></div>
+        <div class="kpi"><div class="t">Last</div><div class="v" id="kLast">—</div></div>
+      </div>
+
+      <div class="chartWrap">
+        <h3>Number Frequency (0-9)</h3>
+        <canvas id="chart" height="140"></canvas>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Latest Results</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Num</th>
+            <th>Big/Small</th>
+            <th>Color</th>
+            <th>Time</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <p class="muted" style="margin-top:10px">Tip: Export করে রাখুন—ডিভাইস/ব্রাউজার বদলালে ডেটা সিঙ্ক হবে না।</p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+  </html>
